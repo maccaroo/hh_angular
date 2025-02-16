@@ -21,7 +21,7 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
-/.vscode/
+.vscode/
 
 
 # Miscellaneous
@@ -40,3 +40,5 @@ Thumbs.db
 # Environment files
 *.env
 *.local
+src/environments/*
+!src/environments/environment.example.ts
