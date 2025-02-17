@@ -1,0 +1,25 @@
+h2 {
+    margin-bottom: 20px;
+    color: #007bff;
+    }
+
+ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+        padding: 10px;
+        border: 1px solid #ddd;
+        margin-bottom: 5px;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+
+        &:hover {
+        background-color: #f1f1f1;
+        }
+    }
+}
+
+p {
+    color: #888;
+}
