@@ -2,9 +2,9 @@ import { Routes } from '@angular/router';
 import { AuthGuard } from './core/services/auth.guard';
 import { LoginComponent } from './features/auth/login.component';
 import { HomeComponent } from './features/home/home.component';
-import { DataSourceListComponent } from './features/data-sources/data-source-list.component';
-import { AddDataSourceComponent } from './features/data-sources/add-data-source.component';
-import { DataSourceDetailComponent } from './features/data-sources/data-source-detail.component';
+import { DataSourceListComponent } from './features/data-source/data-source-list.component';
+import { AddDataSourceComponent } from './features/data-source/add-data-source.component';
+import { DataSourceDetailComponent } from './features/data-source/data-source-detail.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
