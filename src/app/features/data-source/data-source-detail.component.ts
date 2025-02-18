@@ -37,7 +37,7 @@ import { PaginationComponent } from "../../components/pagination/pagination.comp
         }
         <app-back-button></app-back-button>
     `,
-    styleUrls: ['./data-source-detail.component.css']
+    styleUrls: ['./data-source-detail.component.scss']
 })
 export class DataSourceDetailComponent implements OnInit {
     dataSource!: DataSource;
