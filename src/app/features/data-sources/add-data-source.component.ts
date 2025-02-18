@@ -4,12 +4,13 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { DataSourceService } from '../../core/services/data-source.service';
 import { Router } from '@angular/router';
 import { DataSource } from '../../core/models/data-source';
+import { BackButtonComponent } from "../../components/back-button/back-button.component";
 
 
 @Component({
     selector: 'app-add-data-source',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [CommonModule, ReactiveFormsModule, BackButtonComponent],
     template: `
         <h2>Add New Data Source</h2>
         <form [formGroup]="addDataSourceForm" (ngSubmit)="onSubmit()">
@@ -27,7 +28,7 @@ import { DataSource } from '../../core/models/data-source';
 
             <button type="submit" [disabled]="!addDataSourceForm.valid">Add</button>
         </form>
-        <button (click)="goBack()">Go Back</button>
+        <app-back-button></app-back-button>
     `,
   styleUrls: ['./add-data-source.component.scss']
 })
@@ -49,9 +50,5 @@ export class AddDataSourceComponent {
                 this.router.navigate(['/data-sources']);
             });
         }
-    }
-    
-    goBack(): void {
-        window.history.back();
     }
 }

@@ -5,11 +5,13 @@ import { DataPointService } from '../../core/services/data-point.service';
 import { DataSourceService } from '../../core/services/data-source.service';
 import { DataSource } from '../../core/models/data-source';
 import { DataPoint } from '../../core/models/data-point';
+import { BackButtonComponent } from "../../components/back-button/back-button.component";
+import { PaginationComponent } from "../../components/pagination/pagination.component";
 
 @Component({
     selector: 'app-data-source-detail',
     standalone: true,
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, RouterModule, BackButtonComponent, PaginationComponent],
     template: `
         <h2>Data Source Detail</h2>
         @if (dataSource) {
@@ -26,18 +28,14 @@ import { DataPoint } from '../../core/models/data-point';
                     }
                 </ul>
 
-                <div class="pagination-controls">
-                    <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
-                    Page {{ currentPage }} of {{ totalPages }}
-                    <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
-                </div>
+                <app-pagination [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="onPageChange($event)"></app-pagination>
             } @else {
                 <p>No data points found for this data source.</p>
             }
         } @else {
             <p>Loading data source details...</p>
         }
-        <button (click)="goBack()">Go Back</button>
+        <app-back-button></app-back-button>
     `,
     styleUrls: ['./data-source-detail.component.css']
 })
@@ -74,9 +72,5 @@ export class DataSourceDetailComponent implements OnInit {
     onPageChange(page: number): void {
         this.currentPage = page;
         this.loadDataPoints();
-    }
-
-    goBack(): void {
-        window.history.back();
     }
 }

@@ -7,8 +7,8 @@ import { RouterModule } from '@angular/router';
     standalone: true,
     imports: [CommonModule, RouterModule],
     template: `
-        <h1>Welcome to the Home Page</h1>
-        <p>This is the main dashboard after login</p>
+        <h1>Home Historian</h1>
+        <p>Manage your data sources and data points.</p>
         <a routerLink="/data-sources">View Data Sources</a>
     `,
     styleUrls: ['./home.component.scss']
