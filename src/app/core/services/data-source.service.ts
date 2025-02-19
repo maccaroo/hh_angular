@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { PagedResponse } from '../models/paged-response';
 import { DataSource } from '../models/data-source';
+import { DataSourceSummary } from '../models/data-source-summary';
 
 @Injectable({
     providedIn: 'root',
@@ -33,6 +34,12 @@ export class DataSourceService {
     getDataSource(id: number): Observable<DataSource> {
         return this.http.get<DataSource>(
             `${`${environment.apiUrl}/datasources`}/${id}`,
+        );
+    }
+
+    getDataSourceSummary(id: number): Observable<DataSourceSummary> {
+        return this.http.get<DataSourceSummary>(
+            `${environment.apiUrl}/datasources/${id}/summary`,
         );
     }
 }

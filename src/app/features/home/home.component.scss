@@ -1,6 +1,41 @@
-h1 {
-    color: #007bff;
+mat-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
 }
-p {
-    font-size: 16px;
+
+.spacer {
+    flex-grow: 1;
+}
+
+.menu-button {
+    display: flex;
+    align-items: center;
+    gap: 8px; // Space between icon and text
+}
+
+.content {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.content h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1976d2; // Angular Material primary color
+    margin-bottom: 10px;
+}
+
+.content p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+mat-menu {
+    min-width: 200px;
+}
+
+button[mat-menu-item] mat-icon {
+    margin-right: 8px;
 }
