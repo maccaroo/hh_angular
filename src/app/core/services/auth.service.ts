@@ -20,9 +20,6 @@ export class AuthService {
     login(username: string, password: string): Observable<boolean> {
         return this.http.post<{ token: string }>(this.apiUrl, { username, password }).pipe(
             map(response => {
-
-                console.log('API Response:', response);  
-
                 if (response.token) {
                     this.token = response.token;
                     this.isAuthenticatedSubject.next(true);
