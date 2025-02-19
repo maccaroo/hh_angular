@@ -1,6 +1,7 @@
 import eslintPlugin from "@typescript-eslint/eslint-plugin";
 import eslintParser from "@typescript-eslint/parser";
 import angularEslintPlugin from "@angular-eslint/eslint-plugin";
+import prettierConfig from "eslint-config-prettier";
 
 export default [
     {
@@ -18,6 +19,7 @@ export default [
             "@angular-eslint": angularEslintPlugin,
         },
         rules: {
+            ...prettierConfig.rules, // Apply Prettier rules directly
             "@angular-eslint/directive-selector": [
                 "error",
                 { type: "attribute", prefix: "app", style: "camelCase" },
@@ -27,7 +29,7 @@ export default [
                 { type: "element", prefix: "app", style: "kebab-case" },
             ],
             "no-extra-semi": "warn",
-            "indent": ["warn", 4],
+            indent: ["warn", 4],
         },
-    }
+    },
 ];

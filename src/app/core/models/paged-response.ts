@@ -3,5 +3,4 @@ export interface PagedResponse<T> {
     limit: number;
     total: number;
     data: T[];
-  }
-  
+}

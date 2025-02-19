@@ -3,35 +3,46 @@ import { CommonModule } from '@angular/common';
 import { DataSourceService } from '../../core/services/data-source.service';
 import { RouterModule } from '@angular/router';
 import { DataSource } from '../../core/models/data-source';
-import { BackButtonComponent } from "../../components/back-button/back-button.component";
-import { PaginationComponent } from "../../components/pagination/pagination.component";
-
+import { BackButtonComponent } from '../../components/back-button/back-button.component';
+import { PaginationComponent } from '../../components/pagination/pagination.component';
 
 @Component({
     selector: 'app-data-source-list',
     standalone: true,
-    imports: [CommonModule, RouterModule, BackButtonComponent, PaginationComponent],
+    imports: [
+        CommonModule,
+        RouterModule,
+        BackButtonComponent,
+        PaginationComponent,
+    ],
     template: `
         <h2>Data Sources</h2>
         <a routerLink="/data-sources/add">Add New Data Source</a>
 
         @if (dataSources.length > 0) {
             <ul>
-                @for (dataSource of dataSources; track dataSource){
+                @for (dataSource of dataSources; track dataSource) {
                     <li>
-                        <strong>{{ dataSource.name }}</strong> - {{ dataSource.description }}
-                        <a [routerLink]="['/data-sources', dataSource.id]">View Details</a>
+                        <strong>{{ dataSource.name }}</strong> -
+                        {{ dataSource.description }}
+                        <a [routerLink]="['/data-sources', dataSource.id]"
+                            >View Details</a
+                        >
                     </li>
                 }
             </ul>
 
-            <app-pagination [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="onPageChange($event)"></app-pagination>
+            <app-pagination
+                [currentPage]="currentPage"
+                [totalPages]="totalPages"
+                (pageChange)="onPageChange($event)"
+            ></app-pagination>
         } @else {
             <p>No data sources available.</p>
         }
         <app-back-button></app-back-button>
     `,
-    styleUrls: ['./data-source-list.component.scss']
+    styleUrls: ['./data-source-list.component.scss'],
 })
 export class DataSourceListComponent implements OnInit {
     dataSources: DataSource[] = [];
@@ -43,7 +54,7 @@ export class DataSourceListComponent implements OnInit {
         return Math.ceil(this.total / this.pageSize);
     }
 
-    constructor(private dataSourceService: DataSourceService) { }
+    constructor(private dataSourceService: DataSourceService) {}
 
     ngOnInit(): void {
         this.loadDataSources();
@@ -51,10 +62,12 @@ export class DataSourceListComponent implements OnInit {
 
     loadDataSources(): void {
         const offset = (this.currentPage - 1) * this.pageSize;
-        this.dataSourceService.getDataSources(offset, this.pageSize).subscribe(pagedResponse => {
-            this.dataSources = pagedResponse.data;
-            this.total = pagedResponse.total;
-        });
+        this.dataSourceService
+            .getDataSources(offset, this.pageSize)
+            .subscribe((pagedResponse) => {
+                this.dataSources = pagedResponse.data;
+                this.total = pagedResponse.total;
+            });
     }
 
     onPageChange(page: number): void {

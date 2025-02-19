@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { environment } from "../../../environments/environment";
+import { environment } from '../../../environments/environment';
 
 @Injectable({
-    providedIn: "root"
+    providedIn: 'root',
 })
 export class AuthService {
     private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
@@ -18,18 +18,20 @@ export class AuthService {
     constructor(private http: HttpClient) {}
 
     login(username: string, password: string): Observable<boolean> {
-        return this.http.post<{ token: string }>(this.apiUrl, { username, password }).pipe(
-            map(response => {
-                if (response.token) {
-                    this.token = response.token;
-                    this.isAuthenticatedSubject.next(true);
-                    return true;
-                } else {
-                    this.isAuthenticatedSubject.next(false);
-                    return false;
-                }
-            })
-        )
+        return this.http
+            .post<{ token: string }>(this.apiUrl, { username, password })
+            .pipe(
+                map((response) => {
+                    if (response.token) {
+                        this.token = response.token;
+                        this.isAuthenticatedSubject.next(true);
+                        return true;
+                    } else {
+                        this.isAuthenticatedSubject.next(false);
+                        return false;
+                    }
+                }),
+            );
     }
 
     logout(): void {

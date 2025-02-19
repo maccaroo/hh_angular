@@ -5,32 +5,38 @@ import { of } from 'rxjs';
 import { provideHttpClient } from '@angular/common/http';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 
-
 describe('DataSourceListComponent', () => {
     let component: DataSourceListComponent;
     let fixture: ComponentFixture<DataSourceListComponent>;
     let dataSourceServiceSpy: jasmine.SpyObj<DataSourceService>;
 
     beforeEach(async () => {
-        dataSourceServiceSpy = jasmine.createSpyObj('DataSourceService', ['getDataSources']);
+        dataSourceServiceSpy = jasmine.createSpyObj('DataSourceService', [
+            'getDataSources',
+        ]);
 
         await TestBed.configureTestingModule({
             imports: [DataSourceListComponent],
             providers: [
                 provideHttpClient(),
                 { provide: DataSourceService, useValue: dataSourceServiceSpy },
-                { provide: ActivatedRoute, useValue: { paramMap: of(convertToParamMap({ id: 1 })) } }
-            ]
+                {
+                    provide: ActivatedRoute,
+                    useValue: { paramMap: of(convertToParamMap({ id: 1 })) },
+                },
+            ],
         }).compileComponents();
 
         fixture = TestBed.createComponent(DataSourceListComponent);
         component = fixture.componentInstance;
-        dataSourceServiceSpy.getDataSources.and.returnValue(of({
-            offset: 0,
-            limit: 10,
-            total: 0,
-            data: []
-        }));
+        dataSourceServiceSpy.getDataSources.and.returnValue(
+            of({
+                offset: 0,
+                limit: 10,
+                total: 0,
+                data: [],
+            }),
+        );
         fixture.detectChanges();
     });
 

@@ -13,23 +13,31 @@ describe('DataSourceDetailComponent', () => {
     let dataPointServiceSpy: jasmine.SpyObj<DataPointService>;
 
     beforeEach(async () => {
-        dataSourceServiceSpy = jasmine.createSpyObj('DataSourceService', ['getDataSource']);
-        dataPointServiceSpy = jasmine.createSpyObj('DataPointService', ['getDataPoints']);
+        dataSourceServiceSpy = jasmine.createSpyObj('DataSourceService', [
+            'getDataSource',
+        ]);
+        dataPointServiceSpy = jasmine.createSpyObj('DataPointService', [
+            'getDataPoints',
+        ]);
 
-        dataSourceServiceSpy.getDataSource.and.returnValue(of({
-            id: 1,
-            name: 'Test Data Source',
-            description: 'This is a test data source',
-            createdAt: new Date().toISOString(),
-            createdByUserId: 1,
-            dataType: 'string'
-        }));
-        dataPointServiceSpy.getDataPoints.and.returnValue(of({
-            offset: 0,
-            limit: 10,
-            total: 0,
-            data: []
-        }));
+        dataSourceServiceSpy.getDataSource.and.returnValue(
+            of({
+                id: 1,
+                name: 'Test Data Source',
+                description: 'This is a test data source',
+                createdAt: new Date().toISOString(),
+                createdByUserId: 1,
+                dataType: 'string',
+            }),
+        );
+        dataPointServiceSpy.getDataPoints.and.returnValue(
+            of({
+                offset: 0,
+                limit: 10,
+                total: 0,
+                data: [],
+            }),
+        );
 
         await TestBed.configureTestingModule({
             imports: [DataSourceDetailComponent],
@@ -39,13 +47,13 @@ describe('DataSourceDetailComponent', () => {
                     provide: ActivatedRoute,
                     useValue: {
                         snapshot: {
-                            paramMap: convertToParamMap({ id: '1' })
-                        }
-                    }
+                            paramMap: convertToParamMap({ id: '1' }),
+                        },
+                    },
                 },
                 { provide: DataSourceService, useValue: dataSourceServiceSpy },
-                { provide: DataPointService, useValue: dataPointServiceSpy }
-            ]
+                { provide: DataPointService, useValue: dataPointServiceSpy },
+            ],
         }).compileComponents();
 
         fixture = TestBed.createComponent(DataSourceDetailComponent);

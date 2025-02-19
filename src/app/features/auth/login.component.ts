@@ -1,35 +1,49 @@
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { AuthService } from "../../core/services/auth.service";
-import { CommonModule } from "@angular/common";
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import {
+    FormBuilder,
+    FormGroup,
+    ReactiveFormsModule,
+    Validators,
+} from '@angular/forms';
+import { AuthService } from '../../core/services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: "app-login",
+    selector: 'app-login',
     standalone: true,
     imports: [ReactiveFormsModule, CommonModule],
     template: `
-        <form [formGroup]="loginForm"(ngSubmit)="onSubmit()">
-            <label for= "username" > Username:</label>
-            <input id = "username" formControlName = "username" required />
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <label for="username"> Username:</label>
+            <input id="username" formControlName="username" required />
 
             <label for="password">Password</label>
-            <input id="password" type="password" formControlName="password" required />
+            <input
+                id="password"
+                type="password"
+                formControlName="password"
+                required
+            />
 
             <button type="submit">Login</button>
-            <p *ngIf="error">{{error}}</p>
+            <p *ngIf="error">{{ error }}</p>
         </form>
     `,
-    styleUrls: ['./login.component.scss']
+    styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent{
+export class LoginComponent {
     loginForm: FormGroup;
     error: string | null = null;
 
-    constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+    constructor(
+        private fb: FormBuilder,
+        private authService: AuthService,
+        private router: Router,
+    ) {
         this.loginForm = this.fb.group({
             username: ['', Validators.required],
-            password: ['', Validators.required]
+            password: ['', Validators.required],
         });
     }
 
@@ -41,6 +55,6 @@ export class LoginComponent{
             } else {
                 this.error = 'Invalid credentials';
             }
-        })
+        });
     }
 }

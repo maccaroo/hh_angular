@@ -11,6 +11,6 @@ import { RouterModule } from '@angular/router';
         <p>Manage your data sources and data points.</p>
         <a routerLink="/data-sources">View Data Sources</a>
     `,
-    styleUrls: ['./home.component.scss']
+    styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent { }
+export class HomeComponent {}

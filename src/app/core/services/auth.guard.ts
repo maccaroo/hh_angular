@@ -4,11 +4,14 @@ import { AuthService } from './auth.service';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-    constructor(private authService: AuthService, private router: Router) { }
-    
+    constructor(
+        private authService: AuthService,
+        private router: Router,
+    ) {}
+
     canActivate() {
         return this.authService.isAuthenticated$.pipe(
             map((isAuthenticated) => {
@@ -17,7 +20,7 @@ export class AuthGuard implements CanActivate {
                     return false;
                 }
                 return true;
-            })
-        )
+            }),
+        );
     }
 }

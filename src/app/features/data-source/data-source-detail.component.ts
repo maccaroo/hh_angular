@@ -5,13 +5,18 @@ import { DataPointService } from '../../core/services/data-point.service';
 import { DataSourceService } from '../../core/services/data-source.service';
 import { DataSource } from '../../core/models/data-source';
 import { DataPoint } from '../../core/models/data-point';
-import { BackButtonComponent } from "../../components/back-button/back-button.component";
-import { PaginationComponent } from "../../components/pagination/pagination.component";
+import { BackButtonComponent } from '../../components/back-button/back-button.component';
+import { PaginationComponent } from '../../components/pagination/pagination.component';
 
 @Component({
     selector: 'app-data-source-detail',
     standalone: true,
-    imports: [CommonModule, RouterModule, BackButtonComponent, PaginationComponent],
+    imports: [
+        CommonModule,
+        RouterModule,
+        BackButtonComponent,
+        PaginationComponent,
+    ],
     template: `
         <h2>Data Source Detail</h2>
         @if (dataSource) {
@@ -24,11 +29,17 @@ import { PaginationComponent } from "../../components/pagination/pagination.comp
             @if (dataPoints) {
                 <ul>
                     @for (dataPoint of dataPoints; track dataPoint) {
-                        <li>{{ dataPoint.createdAt }}: {{ dataPoint.value }}</li>
+                        <li>
+                            {{ dataPoint.createdAt }}: {{ dataPoint.value }}
+                        </li>
                     }
                 </ul>
 
-                <app-pagination [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="onPageChange($event)"></app-pagination>
+                <app-pagination
+                    [currentPage]="currentPage"
+                    [totalPages]="totalPages"
+                    (pageChange)="onPageChange($event)"
+                ></app-pagination>
             } @else {
                 <p>No data points found for this data source.</p>
             }
@@ -37,7 +48,7 @@ import { PaginationComponent } from "../../components/pagination/pagination.comp
         }
         <app-back-button></app-back-button>
     `,
-    styleUrls: ['./data-source-detail.component.scss']
+    styleUrls: ['./data-source-detail.component.scss'],
 })
 export class DataSourceDetailComponent implements OnInit {
     dataSource!: DataSource;
@@ -50,7 +61,11 @@ export class DataSourceDetailComponent implements OnInit {
         return Math.ceil(this.total / this.pageSize);
     }
 
-    constructor(private route: ActivatedRoute, private dataSourceService: DataSourceService, private dataPointService: DataPointService) { }
+    constructor(
+        private route: ActivatedRoute,
+        private dataSourceService: DataSourceService,
+        private dataPointService: DataPointService,
+    ) {}
 
     ngOnInit(): void {
         const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -63,10 +78,12 @@ export class DataSourceDetailComponent implements OnInit {
 
     loadDataPoints(): void {
         const offset = (this.currentPage - 1) * this.pageSize;
-        this.dataPointService.getDataPoints(this.dataSource.id, offset, this.pageSize).subscribe(pagedResponse => {
-            this.dataPoints = pagedResponse.data;
-            this.total = pagedResponse.total;
-        });
+        this.dataPointService
+            .getDataPoints(this.dataSource.id, offset, this.pageSize)
+            .subscribe((pagedResponse) => {
+                this.dataPoints = pagedResponse.data;
+                this.total = pagedResponse.total;
+            });
     }
 
     onPageChange(page: number): void {
