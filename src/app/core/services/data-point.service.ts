@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { PagedResponse } from '../models/paged-response';
-import { DataPoint } from '../models/data-point';
+import { environment } from '@environments/environment';
+import { PagedResponse } from '@core/models/paged-response';
+import { DataPoint } from '@core/models/data-point';
 
 @Injectable({
     providedIn: 'root',

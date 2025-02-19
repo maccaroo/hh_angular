@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { DataSourceService } from './data-source.service';
+import { DataSourceService } from '@core/services/data-source.service';
 import { provideHttpClient, HttpClient } from '@angular/common/http';
 import {
     HttpTestingController,
     provideHttpClientTesting,
 } from '@angular/common/http/testing';
-import { PagedResponse } from '../models/paged-response';
-import { DataSource } from '../models/data-source';
-import { environment } from '../../../environments/environment';
+import { PagedResponse } from '@core/models/paged-response';
+import { DataSource } from '@core/models/data-source';
+import { environment } from '@environments/environment';
 
 describe('DataSourceService', () => {
     let service: DataSourceService;

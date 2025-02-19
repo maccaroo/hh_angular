@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { DataPointService } from './data-point.service';
+import { DataPointService } from '@core/services/data-point.service';
 import { provideHttpClient, HttpClient } from '@angular/common/http';
 import {
     HttpTestingController,
     provideHttpClientTesting,
 } from '@angular/common/http/testing';
-import { PagedResponse } from '../models/paged-response';
-import { DataPoint } from '../models/data-point';
-import { environment } from '../../../environments/environment';
+import { PagedResponse } from '@core/models/paged-response';
+import { DataPoint } from '@core/models/data-point';
+import { environment } from '@environments/environment';
 
 describe('DataPointService', () => {
     let service: DataPointService;

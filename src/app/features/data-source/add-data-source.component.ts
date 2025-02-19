@@ -6,10 +6,10 @@ import {
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { DataSourceService } from '../../core/services/data-source.service';
+import { DataSourceService } from '@core/services/data-source.service';
 import { Router } from '@angular/router';
-import { DataSource } from '../../core/models/data-source';
-import { BackButtonComponent } from '../../components/back-button/back-button.component';
+import { DataSource } from '@core/models/data-source';
+import { BackButtonComponent } from '@components/back-button/back-button.component';
 
 @Component({
     selector: 'app-add-data-source',

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { PagedResponse } from '../models/paged-response';
-import { DataSource } from '../models/data-source';
-import { DataSourceSummary } from '../models/data-source-summary';
+import { environment } from '@environments/environment';
+import { PagedResponse } from '@core/models/paged-response';
+import { DataSource } from '@core/models/data-source';
+import { DataSourceSummary } from '@core/models/data-source-summary';
 
 @Injectable({
     providedIn: 'root',
