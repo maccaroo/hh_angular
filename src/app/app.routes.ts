@@ -3,7 +3,7 @@ import { AuthGuard } from '@core/services/auth.guard';
 import { LoginComponent } from '@features/auth/login.component';
 import { HomeComponent } from '@features/home/home.component';
 import { DataSourceListComponent } from '@features/data-source/data-source-list/data-source-list.component';
-import { AddDataSourceComponent } from '@features/data-source/add-data-source.component';
+import { AddDataSourceComponent } from '@features/data-source/data-source-add/add-data-source.component';
 import { DataSourceDetailComponent } from '@features/data-source/data-source-detail/data-source-detail.component';
 
 export const routes: Routes = [

@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { DataSourceSummary } from '@core/models/data-source-summary';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { BackButtonComponent } from '../../../components/back-button/back-button.component';
 
 interface DataSourceWithSummary {
     id: number;
@@ -25,6 +26,7 @@ interface DataSourceWithSummary {
         MatToolbar,
         MatCardModule,
         MatButtonModule,
+        BackButtonComponent,
     ],
     template: `
         <mat-toolbar color="primary">
@@ -33,6 +35,7 @@ interface DataSourceWithSummary {
 
         <div class="container">
             <div class="actions">
+                <app-back-button></app-back-button>
                 <a
                     mat-raised-button
                     color="accent"

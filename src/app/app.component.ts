@@ -1,13 +1,28 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { NavigationComponent } from '@components/navigation/navigation.component';
+import { filter } from 'rxjs';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet],
-    template: '<router-outlet></router-outlet>',
+    imports: [RouterOutlet, NavigationComponent],
+    template: `
+        @if (showNavigation) {
+            <app-navigation></app-navigation>
+        }
+        <router-outlet></router-outlet>
+    `,
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    title = 'Home Historian';
+    showNavigation: boolean = true;
+
+    constructor(private router: Router) {
+        this.router.events
+            .pipe(filter((event) => event instanceof NavigationEnd))
+            .subscribe((event: any) => {
+                this.showNavigation = event.url !== '/login';
+            });
+    }
 }

@@ -7,6 +7,7 @@ import { DataSource } from '@core/models/data-source';
 import { DataPoint } from '@core/models/data-point';
 import { BackButtonComponent } from '@components/back-button/back-button.component';
 import { PaginationComponent } from '@components/pagination/pagination.component';
+import { MatToolbar } from '@angular/material/toolbar';
 
 @Component({
     selector: 'app-data-source-detail',
@@ -16,37 +17,49 @@ import { PaginationComponent } from '@components/pagination/pagination.component
         RouterModule,
         BackButtonComponent,
         PaginationComponent,
+        MatToolbar,
     ],
     template: `
-        <h2>Data Source Detail</h2>
-        @if (dataSource) {
-            <p><strong>Name:</strong> {{ dataSource.name }}</p>
-            <p><strong>Description:</strong> {{ dataSource.description }}</p>
-            <p><strong>Data Type:</strong> {{ dataSource.dataType }}</p>
-            <p><strong>Created At:</strong> {{ dataSource.createdAt }}</p>
+        <mat-toolbar color="primary">
+            <span>Data Source Detail</span>
+        </mat-toolbar>
 
-            <h3>Data Points</h3>
-            @if (dataPoints) {
-                <ul>
-                    @for (dataPoint of dataPoints; track dataPoint) {
-                        <li>
-                            {{ dataPoint.createdAt }}: {{ dataPoint.value }}
-                        </li>
-                    }
-                </ul>
+        <div class="container">
+            <div class="actions">
+                <app-back-button></app-back-button>
+            </div>
+            @if (dataSource) {
+                <p><strong>Name:</strong> {{ dataSource.name }}</p>
+                <p>
+                    <strong>Description:</strong> {{ dataSource.description }}
+                </p>
+                <p><strong>Data Type:</strong> {{ dataSource.dataType }}</p>
+                <p><strong>Created At:</strong> {{ dataSource.createdAt }}</p>
 
-                <app-pagination
-                    [currentPage]="currentPage"
-                    [totalPages]="totalPages"
-                    (pageChange)="onPageChange($event)"
-                ></app-pagination>
+                <h3>Data Points</h3>
+                @if (dataPoints) {
+                    <ul>
+                        @for (dataPoint of dataPoints; track dataPoint) {
+                            <li>
+                                {{ dataPoint.createdAt | date: 'short' }}:
+                                {{ dataPoint.value }}
+                            </li>
+                        }
+                    </ul>
+
+                    <app-pagination
+                        [currentPage]="currentPage"
+                        [totalPages]="totalPages"
+                        (pageChange)="onPageChange($event)"
+                    ></app-pagination>
+                } @else {
+                    <p>No data points found for this data source.</p>
+                }
             } @else {
-                <p>No data points found for this data source.</p>
+                <p>Loading data source details...</p>
             }
-        } @else {
-            <p>Loading data source details...</p>
-        }
-        <app-back-button></app-back-button>
+        </div>
+        >
     `,
     styleUrls: ['./data-source-detail.component.scss'],
 })
