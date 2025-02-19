@@ -30,7 +30,7 @@ import { BackButtonComponent } from "../../components/back-button/back-button.co
         </form>
         <app-back-button></app-back-button>
     `,
-  styleUrls: ['./add-data-source.component.scss']
+    styleUrls: ['./add-data-source.component.scss']
 })
 export class AddDataSourceComponent {
     addDataSourceForm: FormGroup;

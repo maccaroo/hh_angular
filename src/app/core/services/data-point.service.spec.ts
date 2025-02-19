@@ -32,7 +32,7 @@ describe('DataPointService', () => {
                 dataSourceId: 1,
                 createdAt: new Date().toISOString(),
                 value: 'test'
-             }]
+            }]
         };
         service.getDataPoints(1, 0, 5).subscribe(response => {
             expect(response.data.length).toBe(1);

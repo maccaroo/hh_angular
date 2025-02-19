@@ -34,7 +34,7 @@ describe('DataSourceService', () => {
                 createdAt: new Date().toISOString(),
                 createdByUserId: 1,
                 dataType: 'string'
-             }]
+            }]
         };
 
         service.getDataSources(0, 5).subscribe(response => {

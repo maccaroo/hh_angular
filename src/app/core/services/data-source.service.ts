@@ -13,7 +13,7 @@ export class DataSourceService {
     constructor(private http: HttpClient) { }
 
     addDataSource(dataSource: Omit<DataSource, 'id' | 'createdAt' | 'createdByUserId'>): Observable<DataSource> {
-      return this.http.post<DataSource>(`${environment.apiUrl}/datasources`, dataSource);
+        return this.http.post<DataSource>(`${environment.apiUrl}/datasources`, dataSource);
     }
 
     getDataSources(offset: number = 0, limit: number = 10): Observable<PagedResponse<DataSource>> {
