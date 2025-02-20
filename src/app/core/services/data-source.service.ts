@@ -27,7 +27,9 @@ export class DataSourceService {
     ): Observable<PagedResponse<DataSource>> {
         return this.http.get<PagedResponse<DataSource>>(
             `${environment.apiUrl}/datasources`,
-            { params: { offset, limit } },
+            {
+                params: { offset, limit },
+            },
         );
     }
 

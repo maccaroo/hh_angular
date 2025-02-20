@@ -22,7 +22,6 @@ export default [
         },
         rules: {
             ...prettierConfig.rules, // Apply Prettier rules directly
-            "prettier/prettier": "error", // ESLint will enforce Prettier rules
             indent: ["warn", 4],
 
             "@angular-eslint/directive-selector": [

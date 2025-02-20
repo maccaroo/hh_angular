@@ -18,7 +18,9 @@ export class DataPointService {
     ): Observable<PagedResponse<DataPoint>> {
         return this.http.get<PagedResponse<DataPoint>>(
             `${environment.apiUrl}/datasources/${dataSourceId}/datapoints`,
-            { params: { offset, limit } },
+            {
+                params: { offset, limit },
+            },
         );
     }
 }
