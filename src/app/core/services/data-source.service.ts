@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '@environments/environment';
+import { APP_CONFIG, AppConfig } from 'app/config/app.config.token';
 import { PagedResponse } from '@core/models/paged-response';
 import { DataSource } from '@core/models/data-source';
 import { DataSourceSummary } from '@core/models/data-source-summary';
@@ -10,13 +10,16 @@ import { DataSourceSummary } from '@core/models/data-source-summary';
     providedIn: 'root',
 })
 export class DataSourceService {
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        @Inject(APP_CONFIG) private config: AppConfig,
+    ) {}
 
     addDataSource(
         dataSource: Omit<DataSource, 'id' | 'createdAt' | 'createdByUserId'>,
     ): Observable<DataSource> {
         return this.http.post<DataSource>(
-            `${environment.apiUrl}/datasources`,
+            `${this.config.apiUrl}/datasources`,
             dataSource,
         );
     }
@@ -26,7 +29,7 @@ export class DataSourceService {
         limit: number = 10,
     ): Observable<PagedResponse<DataSource>> {
         return this.http.get<PagedResponse<DataSource>>(
-            `${environment.apiUrl}/datasources`,
+            `${this.config.apiUrl}/datasources`,
             {
                 params: { offset, limit },
             },
@@ -35,13 +38,13 @@ export class DataSourceService {
 
     getDataSource(id: number): Observable<DataSource> {
         return this.http.get<DataSource>(
-            `${`${environment.apiUrl}/datasources`}/${id}`,
+            `${`${this.config.apiUrl}/datasources`}/${id}`,
         );
     }
 
     getDataSourceSummary(id: number): Observable<DataSourceSummary> {
         return this.http.get<DataSourceSummary>(
-            `${environment.apiUrl}/datasources/${id}/summary`,
+            `${this.config.apiUrl}/datasources/${id}/summary`,
         );
     }
 }

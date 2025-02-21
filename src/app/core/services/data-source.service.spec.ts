@@ -1,13 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { DataSourceService } from '@core/services/data-source.service';
-import { provideHttpClient, HttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import {
     HttpTestingController,
     provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { PagedResponse } from '@core/models/paged-response';
 import { DataSource } from '@core/models/data-source';
-import { environment } from '@environments/environment';
+import { APP_CONFIG } from 'app/config/app.config.token';
+import { environmentMock } from '@environments/environment.mock';
 
 describe('DataSourceService', () => {
     let service: DataSourceService;
@@ -19,6 +20,7 @@ describe('DataSourceService', () => {
                 DataSourceService,
                 provideHttpClient(),
                 provideHttpClientTesting(),
+                { provide: APP_CONFIG, useValue: environmentMock },
             ],
         });
         service = TestBed.inject(DataSourceService);
@@ -53,7 +55,7 @@ describe('DataSourceService', () => {
         });
 
         const req = httpMock.expectOne(
-            `${environment.apiUrl}/datasources?offset=0&limit=5`,
+            `${environmentMock.apiUrl}/datasources?offset=0&limit=5`,
         );
         expect(req.request.method).toBe('GET');
         req.flush(mockResponse);

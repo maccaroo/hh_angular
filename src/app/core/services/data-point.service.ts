@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '@environments/environment';
+import { APP_CONFIG, AppConfig } from 'app/config/app.config.token';
 import { PagedResponse } from '@core/models/paged-response';
 import { DataPoint } from '@core/models/data-point';
 
@@ -9,7 +9,10 @@ import { DataPoint } from '@core/models/data-point';
     providedIn: 'root',
 })
 export class DataPointService {
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        @Inject(APP_CONFIG) private config: AppConfig,
+    ) {}
 
     getDataPoints(
         dataSourceId: number,
@@ -17,7 +20,7 @@ export class DataPointService {
         limit: number = 10,
     ): Observable<PagedResponse<DataPoint>> {
         return this.http.get<PagedResponse<DataPoint>>(
-            `${environment.apiUrl}/datasources/${dataSourceId}/datapoints`,
+            `${this.config.apiUrl}/datasources/${dataSourceId}/datapoints`,
             {
                 params: { offset, limit },
             },

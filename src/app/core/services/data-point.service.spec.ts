@@ -1,13 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { DataPointService } from '@core/services/data-point.service';
-import { provideHttpClient, HttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import {
     HttpTestingController,
     provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { PagedResponse } from '@core/models/paged-response';
 import { DataPoint } from '@core/models/data-point';
-import { environment } from '@environments/environment';
+import { environmentMock } from '@environments/environment.mock';
+import { APP_CONFIG } from 'app/config/app.config.token';
 
 describe('DataPointService', () => {
     let service: DataPointService;
@@ -19,6 +20,7 @@ describe('DataPointService', () => {
                 DataPointService,
                 provideHttpClient(),
                 provideHttpClientTesting(),
+                { provide: APP_CONFIG, useValue: environmentMock },
             ],
         });
         service = TestBed.inject(DataPointService);
@@ -50,7 +52,7 @@ describe('DataPointService', () => {
         });
 
         const req = httpMock.expectOne(
-            `${environment.apiUrl}/datasources/1/datapoints?offset=0&limit=5`,
+            `${environmentMock.apiUrl}/datasources/1/datapoints?offset=0&limit=5`,
         );
         expect(req.request.method).toBe('GET');
         req.flush(mockResponse);

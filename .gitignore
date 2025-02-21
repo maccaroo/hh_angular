@@ -42,3 +42,4 @@ Thumbs.db
 *.local
 src/environments/*
 !src/environments/environment.example.ts
+!src/environments/environment.mock.ts
