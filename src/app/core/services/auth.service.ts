@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from '@environments/environment';
+import { APP_CONFIG, AppConfig } from 'app/config/app.config.token';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -18,16 +18,15 @@ export class AuthService {
 
     private token: string | null = null;
 
-    private apiUrl = `${environment.apiUrl}/auth/login`;
-
     constructor(
         private http: HttpClient,
         private router: Router,
+        @Inject(APP_CONFIG) private config: AppConfig,
     ) {}
 
     login(username: string, password: string): Observable<boolean> {
         return this.http
-            .post<{ token: string }>(this.apiUrl, { username, password })
+            .post<{ token: string }>(this.config.apiUrl, { username, password })
             .pipe(
                 map((response) => {
                     if (response.token) {
