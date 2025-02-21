@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-import { DataPointService } from '@core/services/data-point.service';
 import { provideHttpClient } from '@angular/common/http';
 import {
     HttpTestingController,
     provideHttpClientTesting,
 } from '@angular/common/http/testing';
-import { PagedResponse } from '@core/models/paged-response';
+import { TestBed } from '@angular/core/testing';
 import { DataPoint } from '@core/models/data-point';
+import { PagedResponse } from '@core/models/paged-response';
+import { DataPointService } from '@core/services/data-point.service';
 import { environmentMock } from '@environments/environment.mock';
 import { APP_CONFIG } from 'app/config/app.config.token';
 

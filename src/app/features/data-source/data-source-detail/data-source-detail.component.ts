@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { DataPointService } from '@core/services/data-point.service';
-import { DataSourceService } from '@core/services/data-source.service';
-import { DataSource } from '@core/models/data-source';
-import { DataPoint } from '@core/models/data-point';
+import { Component, OnInit } from '@angular/core';
+import { MatToolbar } from '@angular/material/toolbar';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { BackButtonComponent } from '@components/back-button/back-button.component';
 import { PaginationComponent } from '@components/pagination/pagination.component';
-import { MatToolbar } from '@angular/material/toolbar';
+import { DataPoint } from '@core/models/data-point';
+import { DataSource } from '@core/models/data-source';
+import { DataPointService } from '@core/services/data-point.service';
+import { DataSourceService } from '@core/services/data-source.service';
 
 @Component({
     selector: 'app-data-source-detail',

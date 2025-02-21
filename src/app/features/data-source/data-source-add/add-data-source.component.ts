@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import {
     FormBuilder,
     FormGroup,
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { DataSourceService } from '@core/services/data-source.service';
 import { Router } from '@angular/router';
-import { DataSource } from '@core/models/data-source';
 import { BackButtonComponent } from '@components/back-button/back-button.component';
+import { DataSource } from '@core/models/data-source';
+import { DataSourceService } from '@core/services/data-source.service';
 
 @Component({
     selector: 'app-add-data-source',

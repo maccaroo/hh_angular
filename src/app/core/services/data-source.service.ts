@@ -1,10 +1,10 @@
-import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { APP_CONFIG, AppConfig } from 'app/config/app.config.token';
-import { PagedResponse } from '@core/models/paged-response';
+import { Inject, Injectable } from '@angular/core';
 import { DataSource } from '@core/models/data-source';
 import { DataSourceSummary } from '@core/models/data-source-summary';
+import { PagedResponse } from '@core/models/paged-response';
+import { APP_CONFIG, AppConfig } from 'app/config/app.config.token';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',

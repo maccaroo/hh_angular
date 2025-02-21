@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataSourceService } from '@core/services/data-source.service';
+import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbar } from '@angular/material/toolbar';
 import { Router, RouterModule } from '@angular/router';
 import { PaginationComponent } from '@components/pagination/pagination.component';
-import { MatCardModule } from '@angular/material/card';
 import { DataSourceSummary } from '@core/models/data-source-summary';
-import { MatToolbar } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
+import { DataSourceService } from '@core/services/data-source.service';
 import { BackButtonComponent } from '../../../components/back-button/back-button.component';
 
 interface DataSourceWithSummary {

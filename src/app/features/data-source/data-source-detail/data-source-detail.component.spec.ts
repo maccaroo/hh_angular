@@ -1,10 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DataSourceDetailComponent } from '@features/data-source/data-source-detail/data-source-detail.component';
-import { ActivatedRoute, convertToParamMap } from '@angular/router';
-import { of } from 'rxjs';
 import { provideHttpClient } from '@angular/common/http';
-import { DataSourceService } from '@core/services/data-source.service';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { DataPointService } from '@core/services/data-point.service';
+import { DataSourceService } from '@core/services/data-source.service';
+import { DataSourceDetailComponent } from '@features/data-source/data-source-detail/data-source-detail.component';
+import { of } from 'rxjs';
 
 describe('DataSourceDetailComponent', () => {
     let component: DataSourceDetailComponent;

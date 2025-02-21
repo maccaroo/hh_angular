@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavigationComponent } from './navigation.component';
-import { AuthService } from '@core/services/auth.service';
 import { provideRouter } from '@angular/router';
+import { AuthService } from '@core/services/auth.service';
+import { NavigationComponent } from './navigation.component';
 
 describe('NavigationComponent', () => {
     let component: NavigationComponent;

@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DataSourceListComponent } from '@features/data-source/data-source-list/data-source-list.component';
-import { DataSourceService } from '@core/services/data-source.service';
-import { of } from 'rxjs';
 import { provideHttpClient } from '@angular/common/http';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { DataSourceService } from '@core/services/data-source.service';
+import { DataSourceListComponent } from '@features/data-source/data-source-list/data-source-list.component';
+import { of } from 'rxjs';
 
 describe('DataSourceListComponent', () => {
     let component: DataSourceListComponent;
