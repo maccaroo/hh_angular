@@ -25,8 +25,9 @@ export class AuthService {
     ) {}
 
     login(username: string, password: string): Observable<boolean> {
+        let loginUrl = `${this.config.apiUrl}/auth/login`;
         return this.http
-            .post<{ token: string }>(this.config.apiUrl, { username, password })
+            .post<{ token: string }>(loginUrl, { username, password })
             .pipe(
                 map((response) => {
                     if (response.token) {
